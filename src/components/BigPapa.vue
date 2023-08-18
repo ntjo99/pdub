@@ -1,17 +1,22 @@
 <template>
   <div>
-    <ImageLoader v-if="isAuthenticated" /> <!-- Display appropriate view based on authentication status -->
-    <login-component v-else @login="handleLogin" />
+    <ImageLoader v-if="isAuthenticated" @logout="logout"/> <!-- Display appropriate view based on authentication status -->
+    <login-component v-else @login="handleLogin"  />
+    <date-info-entry v-if="isAuthenticated"/>    
   </div>
 </template>
 
 <script>
 import LoginComponent from './HelloWorld.vue'; // Import your Login component
 import ImageLoader from './ImageLoader.vue';
+import DateInfoEntry from './DateInfoEntry.vue';
+
 export default {
   components: {
     LoginComponent,
-    ImageLoader 
+    ImageLoader,  
+    DateInfoEntry,  
+
 
   },
   data() {
@@ -29,6 +34,10 @@ export default {
       } else {
         console.log('Invalid credentials');
       }
+    },
+    logout(){
+          this.isAuthenticated = false;
+          console.log("yo");
     }
   }
 };

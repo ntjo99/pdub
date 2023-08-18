@@ -13,7 +13,6 @@
       <button type="submit" class="login-button">Login</button>
     </form>
     <img src="@/assets/logo.png" alt="Background Image" class="background-image" />
-    <p>{{ hashedText }}</p>
   </div>
  </template>
 
@@ -25,12 +24,12 @@ export default {
   },
     data() {
         return {
-            
+           username: '',
+           password: '', 
         };
     },
     methods: {
         login() {
-           
             const user = { username: this.username, password: this.password };
             this.$emit('login', user);
         },
