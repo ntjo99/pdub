@@ -12,6 +12,7 @@
       </div>
       <button type="submit" class="login-button">Login</button>
     </form>
+    <p v-if="fail" class="failMsg">Invalid Username | Password</p>
     <img src="@/assets/logo.png" alt="Background Image" class="background-image" />
   </div>
  </template>
@@ -20,7 +21,7 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String
+    fail: Boolean,
   },
     data() {
         return {
@@ -53,7 +54,7 @@ body {
   background-color: #555555;
   margin: 0;
   padding: 0;
-  margin-top: -100px;
+  margin-top: -50px;
 }
 
 .login-form {
@@ -62,6 +63,8 @@ body {
   border-radius: 10px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   width: 300px;
+  margin-top: 90px;
+
 }
 
 .input-group {
@@ -98,8 +101,8 @@ body {
   background-color: #0056b3;
 }
 
-.error {
+.failMsg {
   color: red;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 </style>
