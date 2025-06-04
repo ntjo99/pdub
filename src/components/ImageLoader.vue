@@ -17,13 +17,21 @@ export default {
     handleFileChange(event) {
       const file = event.target.files[0];
       if (file) {
-        this.loadImage(file);
+        this.uploadImage(file);
       }
     },
-    loadImage(file) {
+    uploadImage(file) {
       const reader = new FileReader();
       reader.onload = event => {
-        this.imageSrc = event.target.result;
+        const dataUrl = event.target.result;
+        fetch('/upload', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ filename: file.name, data: dataUrl })
+        })
+          .then(r => r.json())
+          .then(d => { this.imageSrc = d.url; })
+          .catch(err => console.error(err));
       };
       reader.readAsDataURL(file);
     },
